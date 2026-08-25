@@ -109,13 +109,6 @@ return jsonify(order_count=count)
 - Ubuntu desktop images used as VM guests can have automatic suspend enabled by default, which fully freezes the VM (including SSH) after sitting idle — worth masking at setup time (`systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target`) before it costs an interrupted session.
 - Appending code to a Python file with `cat >>` places it at the literal end of the file — if that's after a blocking call like `app.run()`, the appended code never executes even though it's sitting right there in the file. New routes need to go before the entry-point block.
 
-## Resume bullets
-
-- Installed and administered PostgreSQL natively on a Linux VM, including systemd service management and least-privilege role/database configuration, backing a Flask/SQLAlchemy application.
-- Diagnosed a slow-query production incident using `EXPLAIN ANALYZE` on a 500,000-row table, identified a missing index as root cause, and resolved it with a 13.6x reduction in query execution time (30.6ms → 2.2ms) and 9.7x reduction in end-to-end API latency.
-- Diagnosed a connection-pool exhaustion incident using PostgreSQL's `pg_stat_activity`, identifying a code-level connection leak (`idle in transaction` sessions) as root cause, and resolved it by fixing the application's connection-lifecycle handling — verified via load testing at 2x the original failure threshold with zero errors.
-- Designed and executed a two-incident database performance lab following a full break/detect/diagnose/fix/verify methodology, mirroring real production on-call troubleshooting.
-
 ## Repo structure
 
 ```
